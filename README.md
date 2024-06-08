@@ -1,4 +1,4 @@
-# Project Installation Guide
+# Installation Guide
 
 ## Step 1: Clone this Repository
 
@@ -42,6 +42,6 @@ docker-compose down
 
 ## API Collection
 
-A collection containing all the APIs can be accessed here [https://elements.getpostman.com/redirect?entityId=36159222-411e1419-f39b-4381-9fdc-b04ed2c469fe&entityType=collection](Postman Collection)
+A collection containing all the APIs can be accessed here [Postman-Collection](https://elements.getpostman.com/redirect?entityId=36159222-411e1419-f39b-4381-9fdc-b04ed2c469fe&entityType=collection)
 
 (For ease of understanding, the sample bearer tokens were kept exposed in all requests)
