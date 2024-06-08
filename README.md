@@ -39,3 +39,9 @@ docker-compose down
 ## Note
 
 **The database (Postgres) is running on a t3 micro instance, which will cause significant slowdown. This is done for cost optimization.**
+
+## API COllection
+
+A collection containing all the APIs can be accessed here [https://elements.getpostman.com/redirect?entityId=36159222-411e1419-f39b-4381-9fdc-b04ed2c469fe&entityType=collection](Postman Collection)
+
+(For ease of understanding, the sample bearer tokens were kept exposed in all requests)
