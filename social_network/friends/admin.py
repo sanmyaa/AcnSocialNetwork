@@ -1,7 +1,9 @@
 from django.contrib import admin
 from simple_history.admin import SimpleHistoryAdmin
-from .models import PendingRequest, Friendship, DroppedRequest
+
 from social_network.utils.filterutils import admin_list_filter
+
+from .models import DroppedRequest, Friendship, PendingRequest
 
 
 @admin.register(PendingRequest)

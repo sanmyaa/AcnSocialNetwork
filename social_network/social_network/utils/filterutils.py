@@ -1,11 +1,12 @@
 from functools import reduce
 from operator import or_
-from typing import Type, List
+from typing import List, Type
+
+from admin_auto_filters.filters import AutocompleteFilter
 from django.db import models
 from rest_framework import filters
 from rest_framework.request import Request
 from rest_framework.views import APIView
-from admin_auto_filters.filters import AutocompleteFilter
 
 
 def CustomFilter(

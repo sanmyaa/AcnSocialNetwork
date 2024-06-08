@@ -1,6 +1,7 @@
 from typing import Dict
-from rest_framework_simplejwt.tokens import RefreshToken
+
 from django.contrib.auth.models import AbstractBaseUser
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 def get_tokens(user: AbstractBaseUser) -> Dict[str, str]:
