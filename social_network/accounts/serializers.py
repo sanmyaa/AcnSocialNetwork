@@ -26,6 +26,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ["email", "name", "password"]
         extra_kwargs = {"password": {"write_only": True}}
 
+    def to_internal_value(self, data):
+        data["email"] = data.get("email") and data["email"].lower()
+        return super().to_internal_value(data)
+
     def to_representation(self, instance):
         """
         Custom representation of the user instance with tokens.
@@ -41,11 +45,15 @@ class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(write_only=True)
 
+    def to_internal_value(self, data):
+        data["email"] = data.get("email") and data["email"].lower()
+        return super().to_internal_value(data)
+
     def create(self, validated_data):
         """
         Authenticate and log in the user with email and password.
         """
-        email = validated_data.get("email").lower()
+        email = validated_data.get("email")
         password = validated_data.get("password")
         user = authenticate(email=email, password=password)
         if user:

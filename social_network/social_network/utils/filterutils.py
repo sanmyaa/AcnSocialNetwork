@@ -9,78 +9,46 @@ from rest_framework.request import Request
 from rest_framework.views import APIView
 
 
-def CustomFilter(
-    *, query_param: str, query_field: str
+def CustomFilterSearch(
+    *, query_param: str, search_fields: List[str], filter_fields: List[str]
 ) -> Type[filters.BaseFilterBackend]:
-    """
-    Create a custom filter class for exact matches on a single field.
-    Args:
-        query_param (str): The query parameter to filter by.
-        query_field (str): The model field to filter on.
-    Returns:
-        Type[filters.BaseFilterBackend]: A class that performs the filtering.
-    """
 
     class FilterClass(filters.BaseFilterBackend):
         def filter_queryset(
             self, request: Request, queryset: models.QuerySet, view: APIView
         ) -> models.QuerySet:
-            """
-            Filter the queryset based on the query parameter value.
-            Args:
-                request (Request): The HTTP request object.
-                queryset (models.QuerySet): The queryset to filter.
-                view (APIView): The view instance.
-            Returns:
-                models.QuerySet: The filtered queryset.
-            """
+
             query_value = request.query_params.get(query_param)
             if query_value:
-                return queryset.filter(**{f"{query_field}__iexact": query_value})
-            return queryset
-
-    return FilterClass
-
-
-def CustomSearch(
-    *, query_param: str, query_fields: List[str]
-) -> Type[filters.BaseFilterBackend]:
-    """
-    Create a custom search class for partial matches on multiple fields.
-    Args:
-        query_param (str): The query parameter to search by.
-        query_fields (List[str]): The model fields to search on.
-    Returns:
-        Type[filters.BaseFilterBackend]: A class that performs the searching.
-    """
-
-    class SearchClass(filters.BaseFilterBackend):
-        def filter_queryset(
-            self, request: Request, queryset: models.QuerySet, view: APIView
-        ) -> models.QuerySet:
-            """
-            Filter the queryset based on the query parameter value.
-            Args:
-                request (Request): The HTTP request object.
-                queryset (models.QuerySet): The queryset to filter.
-                view (APIView): The view instance.
-            Returns:
-                models.QuerySet: The filtered queryset.
-            """
-            query_value = request.query_params.get(query_param)
-            if query_value:
-                return queryset.filter(
+                filtered_queryset = queryset.filter(
                     reduce(
                         or_,
                         (
-                            models.Q(**{f"{field}__icontains": query_value})
-                            for field in query_fields
+                            models.Q(**{f"{f_field}__iexact": query_value})
+                            for f_field in filter_fields
                         ),
                     )
                 )
+                if filtered_queryset.exists():
+                    return filtered_queryset
+
+                searched_queryset = queryset.filter(
+                    reduce(
+                        or_,
+                        (
+                            models.Q(**{f"{f_field}__icontains": query_value})
+                            for f_field in search_fields
+                        ),
+                    )
+                )
+                if searched_queryset.exists():
+                    return searched_queryset
+
+                return queryset.none()
+
             return queryset
 
-    return SearchClass
+    return FilterClass
 
 
 def admin_list_filter(title, field_name) -> Type[AutocompleteFilter]:
