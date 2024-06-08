@@ -15,10 +15,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = DJANGO_SECRET_KEY
 
-DEBUG = True
-
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]"]
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -110,14 +106,6 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ALLOW_CREDENTIALS = True
-
-# CORS_ORIGIN_WHITELIST = []
-
-# CORS_ORIGIN_REGEX_WHITELIST = []
-
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -152,20 +140,5 @@ SIMPLE_JWT = {
     "TOKEN_TYPE_CLAIM": "token_type",
 }
 
-SECURE_SSL_REDIRECT = False
-
-CSRF_COOKIE_SECURE = False
-
-SESSION_COOKIE_SECURE = False
-
-SECURE_BROWSER_XSS_FILTER = True
-
-SECURE_CONTENT_TYPE_NOSNIFF = True
-
-X_FRAME_OPTIONS = "DENY"
-
-SECURE_HSTS_SECONDS = 0
-
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-
-SECURE_HSTS_PRELOAD = False
+# Test-only env
+from social_network.settings_dev import *
