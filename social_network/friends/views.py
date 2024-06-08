@@ -7,10 +7,10 @@ from social_network.utils.throttlingutils import user_throttle
 
 from .models import Friendship, PendingRequest
 from .serializers import (
+    FriendsSerializer,
+    ReceivedPendingRequestSerializer,
     RespondToFriendRequestSerializer,
     SendFriendRequestSerializer,
-    ReceivedPendingRequestSerializer,
-    FriendsSerializer,
 )
 
 

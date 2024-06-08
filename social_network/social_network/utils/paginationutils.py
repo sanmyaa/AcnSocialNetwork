@@ -1,5 +1,6 @@
-from rest_framework.pagination import PageNumberPagination
 from typing import Type
+
+from rest_framework.pagination import PageNumberPagination
 
 
 def make_paginator(

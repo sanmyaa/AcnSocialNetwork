@@ -1,10 +1,12 @@
 import os
 
 # DJANGO_SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
-DJANGO_SECRET_KEY = "VYhBOlgjoPd54DXudxX2VmSSdLZWzXKSmFPsDPUdARsms9RLTgsPRbg2oucIxHn8vhI"
+DJANGO_SECRET_KEY = (
+    "VYhBOlgjoPd54DXudxX2VmSSdLZWzXKSmFPsDPUdARsms9RLTgsPRbg2oucIxHn8vhI"
+)
 
 # POSTGRES_DB =  os.environ.get["POSTGRES_DB"]
-POSTGRES_DB =  "sample_db"
+POSTGRES_DB = "sample_db"
 
 # POSTGRES_USER = os.environ["POSTGRES_USER"]
 POSTGRES_USER = "postgres"

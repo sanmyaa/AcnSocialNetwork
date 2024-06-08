@@ -2,8 +2,8 @@ from django.conf import settings
 from django.db import models
 from simple_history.models import HistoricalRecords
 
-from social_network.utils.modelutils import TimeStampable, check_unique_relation
 from social_network.errlabelscustom import FRIEND_REQUEST, FRIENDSHIP
+from social_network.utils.modelutils import TimeStampable, check_unique_relation
 
 
 class PendingRequest(TimeStampable, models.Model):

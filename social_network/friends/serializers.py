@@ -3,10 +3,10 @@ from django.db import transaction
 from rest_framework import serializers
 
 from accounts.serializers import UserSerializer
+from social_network.errlabelscustom import FRIEND_REQUEST
 from social_network.utils.serializerutils import check_request_to_self
 
 from .models import DroppedRequest, Friendship, PendingRequest
-from social_network.errlabelscustom import FRIEND_REQUEST
 
 User = get_user_model()
 

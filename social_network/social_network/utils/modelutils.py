@@ -1,6 +1,7 @@
+from typing import Type
+
 from django.db import models
 from rest_framework.serializers import ValidationError
-from typing import Type
 
 
 class TimeStampable(models.Model):

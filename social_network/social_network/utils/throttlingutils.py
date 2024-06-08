@@ -1,5 +1,6 @@
-from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 from typing import Type
+
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 
 DEFAULT_LIMIT = 500
 DEFAULT_PERIOD = "day"
